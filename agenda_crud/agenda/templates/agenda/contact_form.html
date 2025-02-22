@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+
+{% block title %}{% if form.instance.pk %}Editar{% else %}Crear{% endif %} Contacto - Agenda{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <h1 class="text-center mb-4">{% if form.instance.pk %}Editar{% else %}Crear{% endif %} Contacto</h1>
+    <form method="post" class="needs-validation" novalidate>
+        {% csrf_token %}
+        <div class="mb-3">
+            <label for="id_nombres" class="form-label">Nombres</label>
+            {{ form.nombres }}
+        </div>
+        <div class="mb-3">
+            <label for="id_apellidos" class="form-label">Apellidos</label>
+            {{ form.apellidos }}
+        </div>
+        <div class="mb-3">
+            <label for="id_telefono" class="form-label">Teléfono</label>
+            {{ form.telefono }}
+        </div>
+        <div class="mb-3">
+            <label for="id_email" class="form-label">Email</label>
+            {{ form.email }}
+        </div>
+        <div class="mb-3">
+            <label for="id_razon_social" class="form-label">Razón Social</label>
+            {{ form.razon_social }}
+        </div>
+        <div class="mb-3">
+            <label for="id_observaciones" class="form-label">Observaciones</label>
+            {{ form.observaciones }}
+        </div>
+        <button type="submit" class="btn btn-primary">Guardar</button>
+        <a href="{% url 'contact_list' %}" class="btn btn-secondary">Cancelar</a>
+    </form>
+</div>
+{% endblock %}

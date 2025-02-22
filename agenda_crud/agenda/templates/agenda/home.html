@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block title %}Inicio - Agenda{% endblock %}
+
+{% block content %}
+<div class="text-center">
+    <h1>Bienvenido a la Agenda, {{ user_name }}</h1>
+    <p class="lead">Gestiona tus contactos de manera fácil y rápida.</p>
+
+    <!-- Mostrar mensajes de Django -->
+    {% if messages %}
+        {% for message in messages %}
+            <div class="alert {% if message.tags %}alert-{{ message.tags }}{% endif %}">
+                {{ message }}
+            </div>
+        {% endfor %}
+    {% endif %}
+
+    <div class="mt-4">
+        {% if user.is_authenticated %}
+            <a href="{% url 'contact_list' %}" class="btn btn-success btn-lg">Ver Contactos</a>
+        {% else %}
+            <a href="{% url 'register' %}" class="btn btn-primary btn-lg">Registrarse</a>
+            <a href="{% url 'login' %}" class="btn btn-secondary btn-lg">Iniciar Sesión</a>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}
