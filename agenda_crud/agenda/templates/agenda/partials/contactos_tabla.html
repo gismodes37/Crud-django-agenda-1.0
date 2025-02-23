@@ -1,5 +1,6 @@
 <!-- agenda/templates/agenda/partials/contactos_tabla.html -->
-<table class="table table-striped table-hover table-sm">
+<div class="table-responsive">
+<table class="table table-striped table-hover table-sm" style="width: 100%;">
     <thead class="table-dark">
         <tr>
             <th>Nombres</th>
@@ -11,7 +12,7 @@
             <th>Fecha de Registro</th>
             <th>Creado Por</th>
             <th>Modificado Por</th>
-            <th>Acciones</th>
+            <th colSpan="3" class="text-center">Acciones</th>
         </tr>
     </thead>
     <tbody>
@@ -23,14 +24,15 @@
                 <td>{{ contact.email }}</td>
                 <td>{{ contact.razon_social }}</td>
                 <td>{{ contact.observaciones|truncatechars:30 }}</td>
-                <td>{{ contact.fecha_registro|date:"d/m/Y H:i" }}</td>
+                <td>{{ contact.fecha_registro|date:"d/m/Y" }}</td>
                 <td>{{ contact.creado_por.username }}</td>
-                <td>{{ contact.modificado_por.username|default:"No modificado" }}</td>
-                <td>
-                    <a href="{% url 'contact_update' contact.pk %}" class="btn btn-sm btn-warning">Editar</a>
-                    <a href="{% url 'contact_delete' contact.pk %}" class="btn btn-sm btn-danger">Eliminar</a>
-                </td>
+                <td>{{ contact.modificado_por.username|default:"" }}</td>
+                <td><a href="{% url 'contact_detail' contact.pk %}" class="btn btn-sm btn-info">Ver</a></td>
+                <td><a href="{% url 'contact_update' contact.pk %}" class="btn btn-sm btn-warning">Editar</a></td>
+                <td><a href="{% url 'contact_delete' contact.pk %}" class="btn btn-sm btn-danger">Eliminar</a></td>
+                
             </tr>
         {% endfor %}
     </tbody>
 </table>
+</div>

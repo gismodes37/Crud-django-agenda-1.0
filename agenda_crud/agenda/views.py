@@ -124,6 +124,11 @@ def buscar_contactos(request):
     return JsonResponse({'html': html})
 
 
+@login_required
+def contact_detail(request, pk):
+    contact = get_object_or_404(Contact, pk=pk)
+    return render(request, 'agenda/contact_detail.html', {'contact': contact})
+
 
 # Crear contacto
 @login_required
