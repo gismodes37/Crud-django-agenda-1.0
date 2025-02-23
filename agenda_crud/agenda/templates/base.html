@@ -20,9 +20,11 @@
                     <li class="nav-item">
                         <a class="nav-link" href="{% url 'contact_list' %}">Contactos</a>
                     </li>
+                    {% if user.is_authenticated and user.is_staff %}
                     <li class="nav-item">
-                        <a class="nav-link" href="{% url 'register' %}">Registrarse</a>
+                        <a class="nav-link" href="{% url 'register' %}">Registrar Usuario</a>
                     </li>
+                    {% endif %}
                     {% if user.is_authenticated %}
                         <li class="nav-item">
                             <form action="{% url 'logout' %}" method="post" class="d-inline">

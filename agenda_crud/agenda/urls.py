@@ -3,6 +3,7 @@ from . import views
 from .views import register  # Importa la vista de registro
 from django.contrib.auth import views as auth_views
 from .views import custom_login
+from .views import buscar_contactos
 
 
 
@@ -15,5 +16,6 @@ urlpatterns = [
     #path('accounts/login/', auth_views.LoginView.as_view(template_name='registration/login.html'), name='login'),
     path('accounts/login/', custom_login, name='login'),
     path('accounts/logout/', auth_views.LogoutView.as_view(template_name='registration/cerrar_sesion.html'), name='logout'),
+    path('buscar-contactos/', buscar_contactos, name='buscar_contactos'),
 
 ]

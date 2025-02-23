@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
+from django.contrib.auth.models import User
 from django.utils import timezone
 
 # Extender el modelo de usuario predeterminado
@@ -30,8 +31,9 @@ class Contact(models.Model):
     email = models.EmailField()
     razon_social = models.CharField(max_length=100)
     observaciones = models.TextField(blank=True, null=True)
-    fecha_registro = models.DateTimeField(default=timezone.now)  # Campo de fecha de registro
-    #usuario = models.ForeignKey(User, on_delete=models.CASCADE)  # Relación con el usuario
+    fecha_registro = models.DateTimeField(default=timezone.now)
+    creado_por = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, related_name='contactos_creados')
+    modificado_por = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, related_name='contactos_modificados')
 
     def __str__(self):
         return f"{self.nombres} {self.apellidos}"
