@@ -27,13 +27,17 @@ class User(AbstractUser):
 class Contact(models.Model):
     nombres = models.CharField(max_length=100)
     apellidos = models.CharField(max_length=100)
-    telefono = models.CharField(max_length=15)
-    email = models.EmailField()
+    telefono = models.CharField(max_length=15, unique=True) #Teléfono único
+    email = models.EmailField(unique=True) # Email único
     razon_social = models.CharField(max_length=100)
-    observaciones = models.TextField(blank=True, null=True)
+#    observaciones = models.TextField(blank=True, null=True)
+    observaciones = models.TextField(blank=True, default="")
+
     fecha_registro = models.DateTimeField(default=timezone.now)
     creado_por = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, related_name='contactos_creados')
     modificado_por = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, related_name='contactos_modificados')
 
     def __str__(self):
         return f"{self.nombres} {self.apellidos}"
+class Meta:
+    ordering = ['-fecha_registro']  # Ordenar por fecha descendente

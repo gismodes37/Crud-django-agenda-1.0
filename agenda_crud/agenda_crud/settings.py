@@ -14,8 +14,6 @@ from pathlib import Path
 import os
 
 
-# Build paths inside the project like this: BASE_DIR / 'subdir'.
-#BASE_DIR = Path(__file__).resolve().parent.parent
 # Ruta base del proyecto
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -79,10 +77,18 @@ WSGI_APPLICATION = 'agenda_crud.wsgi.application'
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
 # Configuración de la base de datos
+
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),  # Usar os.path.join
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'agenda_db',  # Nombre de la base de datos
+        'USER': 'scorpion',  # Usuario de MySQL
+        'PASSWORD': 'angE#2964',  # Contraseña de MySQL
+        'HOST': 'localhost',  # Host de la base de datos
+        'PORT': '3306',  # Puerto de MySQL (por defecto es 3306)
+        'OPTIONS': {
+            'init_command': "SET sql_mode='STRICT_TRANS_TABLES'",  # Modo estricto para MySQL
+        },
     }
 }
 
